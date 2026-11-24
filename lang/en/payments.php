@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'title' => 'Payments',
+    'subtitle' => 'Money received against issued invoices. Every payment is traced to a customer and invoice.',
+    'create' => 'Record payment',
+    'new' => 'New payment',
+    'search_placeholder' => 'Search payment, invoice, reference or customer…',
+    'all_methods' => 'All methods',
+    'date' => 'Payment date',
+    'method' => 'Method',
+    'amount' => 'Amount received',
+    'reference' => 'Reference',
+    'invoice_balance' => 'Invoice balance',
+    'available' => 'Outstanding invoices',
+    'choose_invoice' => 'Select invoice',
+    'record_for' => 'Record a payment',
+    'record_for_hint' => 'Full and partial payments are supported. The invoice status updates automatically.',
+    'max_hint' => 'Maximum allowed: :amount',
+    'payment_detail' => 'Payment details',
+    'receipt' => 'Payment receipt',
+    'applied_to' => 'Applied to invoice',
+    'recorded_by' => 'Recorded by',
+    'no_invoices' => 'No invoices are currently awaiting payment.',
+    'remaining_after' => 'Remaining after this payment',
+    'immutable_note' => 'Recorded payments are immutable for audit integrity. Contact an administrator to correct an error.',
+];

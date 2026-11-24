@@ -1,0 +1,6 @@
+{{-- BusinessFlow — Copyright (c) 2026 Fedaa Mohamed. All rights reserved. --}}
+@extends('errors.layout')
+
+@section('code', '403')
+@section('title', __('errors.403_title'))
+@section('message', __('errors.403_message'))

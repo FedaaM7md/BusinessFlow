@@ -1,0 +1,8 @@
+{{-- BusinessFlow — Copyright (c) 2026 Fedaa Mohamed. All rights reserved. --}}
+@props(['class' => 'h-10 w-10'])
+<svg {{ $attributes->merge(['class' => $class]) }} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect width="48" height="48" rx="12" fill="#14213D"/>
+    <rect x="15.5" y="11.5" width="17" height="25" rx="1.5" fill="#F7F5F0"/>
+    <path d="M19 17h10M19 22h10M19 27h10M19 32h10" stroke="#14213D" stroke-width="1.5" opacity="0.85"/>
+    <path d="M6 7c3 4 5 7 7 12 2 6 20 6 22 0 2-7 3-9 7-12" stroke="#B08D57" stroke-width="3" stroke-linecap="round"/>
+</svg>

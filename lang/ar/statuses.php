@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'draft' => 'مسودة',
+    'sent' => 'مُرسل',
+    'accepted' => 'مقبول',
+    'rejected' => 'مرفوض',
+    'expired' => 'منتهي',
+    'issued' => 'صادر',
+    'partially_paid' => 'مدفوع جزئياً',
+    'paid' => 'مدفوع',
+    'cancelled' => 'ملغي',
+    'active' => 'نشط',
+    'inactive' => 'غير نشط',
+    'in' => 'إدخال مخزون',
+    'out' => 'إخراج مخزون',
+    'adjustment' => 'تسوية',
+    'transfer' => 'تحويل',
+    'cash' => 'نقداً',
+    'bank_transfer' => 'تحويل بنكي',
+    'card' => 'بطاقة',
+    'cheque' => 'شيك',
+    'other' => 'أخرى',
+    'overdue' => 'متأخرة',
+    'low' => 'منخفض',
+    'ok' => 'متوفر',
+];

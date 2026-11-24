@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'draft' => 'Draft',
+    'sent' => 'Sent',
+    'accepted' => 'Accepted',
+    'rejected' => 'Rejected',
+    'expired' => 'Expired',
+    'issued' => 'Issued',
+    'partially_paid' => 'Partially paid',
+    'paid' => 'Paid',
+    'cancelled' => 'Cancelled',
+    'active' => 'Active',
+    'inactive' => 'Inactive',
+    'in' => 'Stock in',
+    'out' => 'Stock out',
+    'adjustment' => 'Adjustment',
+    'transfer' => 'Transfer',
+    'cash' => 'Cash',
+    'bank_transfer' => 'Bank transfer',
+    'card' => 'Card',
+    'cheque' => 'Cheque',
+    'other' => 'Other',
+    'overdue' => 'Overdue',
+    'low' => 'Low',
+    'ok' => 'In stock',
+];

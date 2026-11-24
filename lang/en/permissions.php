@@ -1,0 +1,36 @@
+<?php
+
+return [
+    'groups' => [
+        'dashboard' => 'Dashboard',
+        'crm' => 'Customers',
+        'suppliers' => 'Suppliers',
+        'catalog' => 'Products & services',
+        'inventory' => 'Inventory',
+        'quotations' => 'Quotations',
+        'invoices' => 'Invoices',
+        'payments' => 'Payments',
+        'expenses' => 'Expenses',
+        'reports' => 'Reports',
+        'users' => 'Users',
+        'roles' => 'Roles & permissions',
+        'activity' => 'Activity log',
+        'settings' => 'Settings',
+    ],
+    'items' => [
+        'dashboard' => ['view' => 'View dashboard'],
+        'customers' => ['view' => 'View customers', 'manage' => 'Create and edit customers'],
+        'suppliers' => ['view' => 'View suppliers', 'manage' => 'Create and edit suppliers'],
+        'products' => ['view' => 'View products and services', 'manage' => 'Create and edit products and services'],
+        'inventory' => ['view' => 'View warehouses and stock', 'manage' => 'Record stock movements'],
+        'quotations' => ['view' => 'View quotations', 'manage' => 'Create and edit quotations'],
+        'invoices' => ['view' => 'View invoices', 'manage' => 'Create, issue and cancel invoices'],
+        'payments' => ['view' => 'View payments', 'manage' => 'Record payments'],
+        'expenses' => ['view' => 'View expenses', 'manage' => 'Create and edit expenses'],
+        'reports' => ['view' => 'View and export reports'],
+        'users' => ['view' => 'View users', 'manage' => 'Create and edit users'],
+        'roles' => ['manage' => 'Edit the permission matrix'],
+        'activity' => ['view' => 'View the activity log'],
+        'settings' => ['manage' => 'Manage company settings'],
+    ],
+];

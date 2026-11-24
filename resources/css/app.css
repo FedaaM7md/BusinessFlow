@@ -1,0 +1,336 @@
+/* BusinessFlow — Copyright (c) 2026 Fedaa Mohamed. All rights reserved. */
+@import '@fontsource/ibm-plex-sans-arabic/400.css';
+@import '@fontsource/ibm-plex-sans-arabic/500.css';
+@import '@fontsource/ibm-plex-sans-arabic/600.css';
+@import '@fontsource/ibm-plex-sans-arabic/700.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import '@fontsource/ibm-plex-mono/600.css';
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+
+@theme {
+    --font-sans: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    /* Ink — the ledger's primary colour. #14213D */
+    --color-brand-50: #f3f5f9;
+    --color-brand-100: #e5e9f0;
+    --color-brand-200: #c5cfdf;
+    --color-brand-300: #9aaac5;
+    --color-brand-400: #667a9e;
+    --color-brand-500: #42577d;
+    --color-brand-600: #2c4065;
+    --color-brand-700: #203354;
+    --color-brand-800: #14213D;
+    --color-brand-900: #101a31;
+    --color-brand-950: #0b1223;
+
+    /* Brass — restrained metallic accent. #B08D57 */
+    --color-accent-50: #faf6ef;
+    --color-accent-100: #f2e9d9;
+    --color-accent-200: #e5d4b3;
+    --color-accent-300: #d4b986;
+    --color-accent-400: #c6a36b;
+    --color-accent-500: #B08D57;
+    --color-accent-600: #96763f;
+    --color-accent-700: #7a5e34;
+
+    /* Semantic ledger colours */
+    --color-paper: #F7F5F0;
+    --color-grid: #E4DFD5;
+    --color-positive-50: #ecf4ef;
+    --color-positive-100: #d7e8dd;
+    --color-positive-600: #2F7D5B;
+    --color-positive-700: #276849;
+    --color-negative-50: #fbf0ef;
+    --color-negative-100: #f2dbd8;
+    --color-negative-600: #B4443C;
+    --color-negative-700: #993a33;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        background-color: var(--color-paper);
+        color: var(--color-brand-900);
+        font-feature-settings: 'kern', 'liga';
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-accent-500);
+        outline-offset: 2px;
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+
+    /*
+     * Arabic is a joining script: any letter-spacing breaks the connections.
+     * Force zero tracking on RTL pages so translated labels, print titles and
+     * stamps never inherit a Latin tracking utility.
+     */
+    [dir='rtl'] :where(h1, h2, h3, h4, h5, h6, p, span, td, th, label, a, button, li, dt, dd, summary, div) {
+        letter-spacing: normal !important;
+    }
+}
+
+@layer components {
+    .btn,
+    .btn-primary,
+    .btn-accent,
+    .btn-secondary,
+    .btn-danger,
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 focus-visible:ring-offset-paper disabled:cursor-not-allowed disabled:opacity-50;
+    }
+
+    .btn-primary {
+        @apply bg-brand-800 text-white shadow-sm hover:bg-brand-700;
+    }
+
+    .btn-accent {
+        @apply bg-accent-500 text-white shadow-sm hover:bg-accent-600;
+    }
+
+    .btn-secondary {
+        @apply border border-grid bg-white text-brand-800 shadow-sm hover:bg-brand-50;
+    }
+
+    .btn-danger {
+        @apply bg-negative-600 text-white shadow-sm hover:bg-negative-700;
+    }
+
+    .btn-ghost {
+        @apply text-brand-700 hover:bg-brand-50;
+    }
+
+    .icon-btn {
+        @apply inline-flex h-9 w-9 items-center justify-center rounded-md text-brand-600 transition hover:bg-brand-100 hover:text-brand-900;
+    }
+
+    /*
+     * Mobile navigation drawer. The closed state is in the markup/CSS before
+     * Alpine boots, so it never flashes open. It slides from the logical start
+     * side (right in RTL), is visibility:hidden when closed (so its links are
+     * not tabbable), and is always visible on desktop.
+     */
+    .app-sidebar {
+        visibility: hidden;
+        transform: translateX(-100%);
+        transition: transform 200ms ease, visibility 0s linear 200ms;
+    }
+
+    [dir='rtl'] .app-sidebar {
+        transform: translateX(100%);
+    }
+
+    .app-sidebar.is-open {
+        visibility: visible;
+        transform: translateX(0);
+        transition: transform 200ms ease, visibility 0s;
+    }
+
+    @media (min-width: 1024px) {
+        .app-sidebar {
+            visibility: visible;
+            transform: none !important;
+            transition: none;
+        }
+    }
+
+    .card {
+        @apply rounded-lg border border-grid bg-white shadow-[0_1px_2px_rgba(20,33,61,0.04)];
+    }
+
+    .label {
+        @apply mb-1.5 block text-sm font-semibold text-brand-800;
+    }
+
+    .input {
+        @apply block w-full rounded-md border border-grid bg-white px-3.5 py-2.5 text-sm text-brand-900 shadow-sm transition placeholder:text-brand-300 focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20;
+    }
+
+    .select {
+        @apply block w-full appearance-none rounded-md border border-grid bg-white px-3.5 py-2.5 pe-9 text-sm text-brand-900 shadow-sm transition focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23647B9E'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+        background-position: right 0.7rem center;
+        background-repeat: no-repeat;
+        background-size: 1.1rem;
+    }
+
+    [dir='rtl'] .select {
+        background-position: left 0.7rem center;
+    }
+
+    .table-wrap {
+        @apply overflow-x-auto;
+    }
+
+    .data-table {
+        @apply min-w-full divide-y divide-grid text-sm;
+    }
+
+    .data-table thead th {
+        @apply sticky top-0 z-10 whitespace-nowrap border-b border-grid bg-paper px-4 py-3 text-start text-xs font-bold uppercase tracking-wide text-brand-500;
+    }
+
+    .data-table td {
+        @apply border-b border-grid/80 px-4 py-3.5 align-middle text-brand-900;
+    }
+
+    .data-table tbody tr {
+        @apply transition hover:bg-brand-50/60;
+    }
+
+    .badge {
+        @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ring-inset;
+    }
+
+    .nav-link {
+        @apply flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-brand-700 transition hover:bg-brand-50 hover:text-brand-900;
+    }
+
+    .nav-link-active {
+        @apply bg-brand-800 text-white shadow-sm;
+    }
+
+    .nav-link-active:hover {
+        @apply bg-brand-700 text-white;
+    }
+
+    .nav-group-label {
+        @apply px-3 pb-1.5 pt-5 text-[10px] font-bold uppercase tracking-[0.16em] text-brand-400;
+    }
+
+    .form-section {
+        @apply rounded-lg border border-grid bg-white p-5 shadow-[0_1px_2px_rgba(20,33,61,0.04)] sm:p-6;
+    }
+
+    .stat-card {
+        @apply relative overflow-hidden rounded-lg border border-grid bg-white p-5 shadow-[0_1px_2px_rgba(20,33,61,0.04)];
+    }
+
+    .kpi-label {
+        @apply text-sm font-medium text-brand-500;
+    }
+
+    .kpi-value {
+        @apply mt-1 text-2xl font-bold tracking-tight text-brand-900;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+    }
+
+    .error-text {
+        @apply mt-1 text-xs font-medium text-negative-600;
+    }
+
+    .section-title {
+        @apply text-base font-bold text-brand-900;
+    }
+
+    .muted {
+        @apply text-sm text-brand-500;
+    }
+
+    .table-empty {
+        @apply px-6 py-16 text-center;
+    }
+
+    /* Tabular digits for aligned money and counts. Money always uses the brand
+       sans face so Arabic currency symbols never fall into a mono fallback. */
+    .amount {
+        font-family: var(--font-sans);
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* Document codes and IDs in a monospaced ledger style (INV-2026-0001).
+       Latin-only: never apply this class to Arabic words. */
+    .code {
+        font-family: var(--font-mono);
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+    }
+
+    /* Codes and numbers must never wrap mid-token on narrow screens. */
+    .font-mono {
+        white-space: nowrap;
+    }
+
+    /* Ledger stamp used on print/preview documents. Translated, so sans + no
+       tracking: Arabic has no mono glyphs and joining breaks under tracking. */
+    .ledger-stamp {
+        font-family: var(--font-sans);
+        font-variant-numeric: tabular-nums;
+        border: 2px solid currentColor;
+        border-radius: 4px;
+        padding: 0.15rem 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: normal;
+    }
+}
+
+/* Phone ergonomics: 44px tap targets and no sticky header overlap. */
+@media (max-width: 767px) {
+    .btn,
+    .btn-primary,
+    .btn-accent,
+    .btn-secondary,
+    .btn-danger,
+    .btn-ghost {
+        min-height: 44px;
+    }
+
+    .icon-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .nav-link {
+        min-height: 44px;
+    }
+
+    .input,
+    .select {
+        min-height: 44px;
+    }
+
+    .data-table thead th {
+        position: static;
+    }
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+    }
+
+    .print-sheet {
+        box-shadow: none !important;
+        border: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .data-table thead th {
+        position: static;
+    }
+
+    @page {
+        margin: 14mm;
+    }
+}
